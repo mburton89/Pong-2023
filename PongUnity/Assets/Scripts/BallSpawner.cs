@@ -37,7 +37,7 @@ public class BallSpawner : MonoBehaviour
         currentBall = Instantiate(ballPrefab, spawnPosition.position, transform.rotation, null);
 
         //Creates a new Vector direction that we will assign to the ball
-        float randX = Random.Range(-1.5f, 1.5f);
+        int randX = Random.Range(0, 2) * 2 - 1;
         float randY = Random.Range(-1.5f, 1.5f);
         Vector3 newDirection = new Vector3(randX, randY, 0);
 
