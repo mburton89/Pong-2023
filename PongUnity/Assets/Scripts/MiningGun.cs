@@ -8,7 +8,7 @@ public class MiningGun : MonoBehaviour
     public float maxCharge;
     public float currentCharge;
     public float laserStrength;
-    //public LineLaser laser;
+    public string ShootButton;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,10 @@ public class MiningGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            ShootMiningLaser();
+        }
     }
 
     public void ShootMiningLaser()
