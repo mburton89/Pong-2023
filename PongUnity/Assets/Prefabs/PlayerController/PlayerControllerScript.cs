@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
+    [Header("Configuration")]
+
     public float jogSpeed;
     public float sprintSpeed;
-    public float jumpHeight;
+    public float jumpSpeed;
     public float mouseSensitivity;
+
+    [Header("References")]
 
     public GameObject miningLaser;
     public Rigidbody rb;
     public Transform camera;
 
+    [Header("Runtime")]
+
+    Vector3 newVelocity;
+    bool isGrounded = false;
+    bool isJumping= false;
 
 
     // Start is called before the first frame update
@@ -25,6 +34,21 @@ public class PlayerControllerScript : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity);
+
+        newVelocity = Vector3.up * rb.velocity.y;
+        float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : jogSpeed;
+        newVelocity.x = Input.GetAxis("Horizontal") * speed;
+        newVelocity.z = Input.GetAxis("Vertical") * speed;
+
+        if (isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            {
+                newVelocity.y = jumpSpeed;
+                isJumping = true;
+            }
+            Debug.Log(Input.GetKeyDown(KeyCode.Space));
+        }
     }
 
     private void LateUpdate()
@@ -38,10 +62,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 newVelocity = Vector3.up * rb.velocity.y;
-        float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : jogSpeed;
-        newVelocity.x = Input.GetAxis("Horizontal") * speed;
-        newVelocity.z = Input.GetAxis("Vertical") * speed;
+        
         rb.velocity = transform.TransformDirection(newVelocity);
     }   
 
@@ -65,6 +86,17 @@ public class PlayerControllerScript : MonoBehaviour
         return angle;
     }
 
+    void OnCollisionStay(Collision col)
+    {
+        isGrounded = true;
+        isJumping = false;
+        //Debug.Log("Stay" + isGrounded);
+    }
 
+    void OnCollisionExit(Collision col)
+    {
+        isGrounded = false;
+        //Debug.Log("Exit");
+    }
      
 }
