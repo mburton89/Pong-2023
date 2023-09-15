@@ -726,6 +726,7 @@ MonoBehaviour:
   laserOrigin: {fileID: 960131830}
   gunRange: 50
   maxLaserDuration: 5
+  laserRechargeTime: 0
 --- !u!120 &1907773898
 LineRenderer:
   serializedVersion: 2
@@ -910,7 +911,7 @@ GameObject:
   - component: {fileID: 2071881350}
   m_Layer: 0
   m_Name: target
-  m_TagString: Untagged
+  m_TagString: Mineral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
