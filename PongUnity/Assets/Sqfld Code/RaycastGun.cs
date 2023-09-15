@@ -25,6 +25,7 @@ public class RaycastGun : MonoBehaviour
     void Update()
     {
         fireTimer += Time.deltaTime;
+
         if (gunRecharging)
         {
             RechargeGun();
@@ -92,6 +93,8 @@ public class RaycastGun : MonoBehaviour
             {
                 StopMiningLaser();
                 Debug.Log("Mining gun overheated");
+                gunRecharging = true;
+                rechargeTimer = 0f;
             }
             Debug.Log("Laser shot");
         }

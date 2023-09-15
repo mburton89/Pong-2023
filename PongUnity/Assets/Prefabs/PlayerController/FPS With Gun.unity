@@ -175,7 +175,7 @@ MonoBehaviour:
   laserOrigin: {fileID: 1411274759}
   gunRange: 50
   maxLaserDuration: 5
-  laserRechargeTime: 0
+  laserRechargeTime: 2
 --- !u!120 &1125011997
 LineRenderer:
   serializedVersion: 2
