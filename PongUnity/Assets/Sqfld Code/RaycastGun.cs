@@ -49,13 +49,20 @@ public class RaycastGun : MonoBehaviour
         if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
         {
             laserLine.SetPosition(1, hit.point);
-            Destroy(hit.transform.gameObject);
-            Debug.Log("Target Hit");
+            if (GameObject.FindWithTag("Mineral"))
+            {
+                Destroy(hit.transform.gameObject);
+                Debug.Log("Target Hit, Mineral destroyed.");
+            }
+            else
+            {
+                Debug.Log("target is not a mineral.");
+            }
         }
         else
         {
             laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
-            Debug.Log("Target Miss");
+            Debug.Log("Target ");
         }
         Debug.Log("Laser shot");
     }
