@@ -87,6 +87,12 @@ public class RaycastGun : MonoBehaviour
                 isFiringLaser = false;
                 Debug.Log("Target ");
             }
+
+            if (fireTimer >= maxLaserDuration)
+            {
+                StopMiningLaser();
+                Debug.Log("Mining gun overheated");
+            }
             Debug.Log("Laser shot");
         }
     }
