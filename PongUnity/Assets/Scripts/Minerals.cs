@@ -15,23 +15,34 @@ public class Minerals : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-    
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CheckHealth();
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            takeDamage();
+          //Debug.Log("Update called");
+        }
     }
 
     public void takeDamage()
     {
+        currentHealth -= 1;
+      //Debug.Log("Current Health: " + currentHealth);
+    }
 
-
-        if (Input.GetKeyDown(KeyCode.Space))
+    private void CheckHealth()
+    {
+        if (currentHealth <= 0)
         {
-            currentHealth -= 1;
-            print currentHealth;
+          //Debug.Log("Mineral destroyed!");
+            Destroy(this.gameObject);
         }
     }
+
+
 }

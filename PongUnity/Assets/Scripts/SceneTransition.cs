@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using DG.Tweening;
+//using DG.Tweening;
 
 public class SceneTransition : MonoBehaviour
 {
@@ -16,18 +16,18 @@ public class SceneTransition : MonoBehaviour
     void Start()
     {
         Instance = this;
-        image.DOFade(1, 0);
+        //image.DOFade(1, 0);
         ShowTransparent();
     }
 
     public void ShowBlack()
     {
-        image.DOFade(1, secondsToFade);
+        //image.DOFade(1, secondsToFade);
     }
 
     public void ShowTransparent()
     {
-        image.DOFade(0, secondsToFade);
+        //image.DOFade(0, secondsToFade);
     }
 
     public void TransitionToScene(int sceneIndex)
