@@ -6,6 +6,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public ManagerTester tester;
     
     public int mineral1Count;
     public int mineral2Count;
@@ -28,35 +30,43 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateMineralCountUI();
-        //UpdateGunChargeUI();
+        // UpdateGunChargeUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Checks mineral type when mined and adds to the count.
-    public void MineralMined()
+    public void TestMineralMined()
     {
-        // if (mineral.mineralType == "Mineral 1")
+       if (ManagerTester.Instance.mineralType == "Mineral 1")
         {
-            // mineral1Count += mineral.pointValue;
+            mineral1Count += ManagerTester.Instance.pointValue;
         }
+       else if (ManagerTester.Instance.mineralType == "Mineral 2")
+        {
+            mineral2Count += ManagerTester.Instance.pointValue;
+        }
+
+        UpdateMineralCountUI();
     }
 
     // Updates the text in UI to the mineral count.
     public void UpdateMineralCountUI()
     {
-        mineral1Counter.text = "Mineral 1: " + mineral1Count.ToString();
-        mineral2Counter.text = "Mineral 2: " + mineral2Count.ToString();
-        mineral3Counter.text = "Mineral 3: " + mineral3Count.ToString();
+        mineral1Counter.text = "M1: " + mineral1Count.ToString();
+        mineral2Counter.text = "M2: " + mineral2Count.ToString();
+        mineral3Counter.text = "M3: " + mineral3Count.ToString();
     }
 
     public void UpdateGunChargeUI()
     {
 
     }
+
+
 
 }
