@@ -22,7 +22,7 @@ public class PlayerControllerScript : MonoBehaviour
     Vector3 newVelocity;
     bool isGrounded = false;
     bool isJumping= false;
-
+    bool jumpKeyDown;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,11 @@ public class PlayerControllerScript : MonoBehaviour
 
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    jumpKeyDown = Input.GetKeyDown(KeyCode.Space);
+        //}
+
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity);
 
         newVelocity = Vector3.up * rb.velocity.y;
@@ -40,18 +45,29 @@ public class PlayerControllerScript : MonoBehaviour
         newVelocity.x = Input.GetAxis("Horizontal") * speed;
         newVelocity.z = Input.GetAxis("Vertical") * speed;
 
+        print("isGrounded: " + isGrounded);
+        print("isJumping: " + isJumping);
+
         if (isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
+                print("TRY JUMP");
                 newVelocity.y = jumpSpeed;
                 isJumping = true;
             }
-            Debug.Log(Input.GetKeyDown(KeyCode.Space));
+            //Debug.Log(Input.GetKeyDown(KeyCode.Space));
         }
+
+        rb.velocity = transform.TransformDirection(newVelocity);
+        
+        Vector3 e = camera.eulerAngles;
+        e.x -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        e.x = RestrictAngle(e.x, -85f, 85f);
+        camera.eulerAngles = e;
     }
 
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         Vector3 e = camera.eulerAngles;
         e.x -= Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -62,9 +78,8 @@ public class PlayerControllerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         rb.velocity = transform.TransformDirection(newVelocity);
-    }   
+    }   */
 
     void Move()
     {
