@@ -6,9 +6,9 @@ public class RaycastGun : MonoBehaviour
 {
     public Camera playerCamera;
     public Transform laserOrigin;
-    public float gunRange = 50f;
-    public float fireRate = 0.2f;
-    public float laserDuration = 0.05f;
+    public float gunRange;
+    //public float fireRate;
+   // public float laserDuration;
 
     LineRenderer laserLine;
     float fireTimer;
@@ -21,34 +21,41 @@ public class RaycastGun : MonoBehaviour
     void Update()
     {
         fireTimer += Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && fireTimer > fireRate)
+        if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("Laser shot");
-            fireTimer = 0;
-            laserLine.SetPosition(0, laserOrigin.position);
-            Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            if(Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
-            {
-                laserLine.SetPosition(1, hit.point);
-                Destroy(hit.transform.gameObject);
-            }
-            else
-            {
-                laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
-            }
-            StartCoroutine(ShootLaser());
+            FireMiningLaser();
         }
-        if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
+        else
         {
+            if (Input.GetButtonUp("Fire1"))
+            {
+                laserLine.enabled = false;
+                Debug.Log("Laser Off");
+            }
+        }
+
+        //if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
+        //{
             //Vacuum Mode
-        }
+        //}
     }
 
-    IEnumerator ShootLaser()
+    public void FireMiningLaser()
     {
         laserLine.enabled = true;
-        yield return new WaitForSeconds(laserDuration);
-        laserLine.enabled = false;
+        laserLine.SetPosition(0, laserOrigin.position);
+        Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
+        {
+            laserLine.SetPosition(1, hit.point);
+            Destroy(hit.transform.gameObject);
+        }
+        else
+        {
+            laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
+        }
+        Debug.Log("Laser shot");
     }
+
 }
