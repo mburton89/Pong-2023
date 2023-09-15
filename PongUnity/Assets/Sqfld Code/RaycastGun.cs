@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RaycastGun : MonoBehaviour
 {
@@ -29,8 +30,7 @@ public class RaycastGun : MonoBehaviour
         {
             if (Input.GetButtonUp("Fire1"))
             {
-                laserLine.enabled = false;
-                Debug.Log("Laser Off");
+                StopMiningLaser();
             }
         }
 
@@ -50,12 +50,20 @@ public class RaycastGun : MonoBehaviour
         {
             laserLine.SetPosition(1, hit.point);
             Destroy(hit.transform.gameObject);
+            Debug.Log("Target Hit");
         }
         else
         {
             laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
+            Debug.Log("Target Miss");
         }
         Debug.Log("Laser shot");
+    }
+
+    public void StopMiningLaser()
+    {
+        laserLine.enabled = false;
+        Debug.Log("Laser Off");
     }
 
 }
