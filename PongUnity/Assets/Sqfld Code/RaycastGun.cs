@@ -8,11 +8,11 @@ public class RaycastGun : MonoBehaviour
     public Camera playerCamera;
     public Transform laserOrigin;
     public float gunRange;
-    //public float fireRate;
-   // public float laserDuration;
+    public float maxLaserDuration;
 
     LineRenderer laserLine;
-    float fireTimer;
+    private float fireTimer;
+    private bool isFiringLaser;
 
     void Awake()
     {
@@ -34,6 +34,15 @@ public class RaycastGun : MonoBehaviour
             }
         }
 
+        if (isFiringLaser)
+        {
+            if(fireTimer >= maxLaserDuration)
+            {
+                StopMiningLaser();
+                Debug.Log("Mining gun overheated");
+            }
+        }
+
         //if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
         //{
             //Vacuum Mode
@@ -44,6 +53,8 @@ public class RaycastGun : MonoBehaviour
     {
         laserLine.enabled = true;
         laserLine.SetPosition(0, laserOrigin.position);
+        isFiringLaser = true;
+        fireTimer = 0f;
         Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
@@ -62,6 +73,7 @@ public class RaycastGun : MonoBehaviour
         else
         {
             laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
+            isFiringLaser = false;
             Debug.Log("Target ");
         }
         Debug.Log("Laser shot");
