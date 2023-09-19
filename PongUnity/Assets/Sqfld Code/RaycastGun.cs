@@ -35,27 +35,38 @@ public class RaycastGun : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                isFiringLaser = true; // Moved this line here
+                laserLine.enabled = true; // Moved this line here
                 FireMiningLaser();
             }
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
+            isFiringLaser = false; // Moved this line here
             StopMiningLaser();
         }
 
+        // Update the laser position continuously
         if (isFiringLaser)
         {
-            if(fireTimer >= maxLaserDuration)
+            laserLine.SetPosition(0, laserOrigin.position);
+            Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
             {
-                StopMiningLaser();
-                Debug.Log("Mining gun overheated");
+                laserLine.SetPosition(1, hit.point);
+            }
+            else
+            {
+                laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
             }
         }
 
+
         //if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
         //{
-            //Vacuum Mode
+        //Vacuum Mode
         //}
     }
 
