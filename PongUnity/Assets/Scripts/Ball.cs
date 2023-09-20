@@ -38,4 +38,13 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public GameObject particlePrefab;
+    void OnDestroy()
+    {
+        if (particlePrefab != null)
+        {
+            Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        }
+    }
 }

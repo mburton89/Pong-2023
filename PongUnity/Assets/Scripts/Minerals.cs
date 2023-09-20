@@ -24,16 +24,23 @@ public class Minerals : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            takeDamage();
+            TakeDamage();
           //Debug.Log("Update called");
         }
     }
 
-    public void takeDamage()
+    public void TakeDamage()
     {
         currentHealth -= 1;
       //Debug.Log("Current Health: " + currentHealth);
     }
+
+    public void TakeDamage(float damageToTake)
+    {
+        currentHealth -= damageToTake;
+        //Debug.Log("Current Health: " + currentHealth);
+    }
+
 
     private void CheckHealth()
     {
@@ -44,10 +51,13 @@ public class Minerals : MonoBehaviour
         }
     }
 
-
-
-
-
-
+    public GameObject particlePrefab;
+    void OnDestroy()
+    {
+        if (particlePrefab != null)
+        {
+            Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        }
+    }
 
 }
