@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI mineral2Counter;
     public TextMeshProUGUI mineral3Counter;
 
+    public Image ChargeSlider;
+    public float usageRate;
+    public float rechargeRate;
+
     // public float maxGunCharge;
     // public float currentGunCharge;
     // public bool isGunFiring = false;
@@ -30,13 +35,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateMineralCountUI();
-        // UpdateGunChargeUI();
+        ChargeSlider.fillAmount = 1;
+        UpdateGunChargeUI();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        UpdateGunChargeUI();
     }
 
     // Checks mineral type when mined and adds to the count.
@@ -64,6 +70,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGunChargeUI()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            ChargeSlider.fillAmount -= usageRate;
+        }
+        else 
+        { 
+            ChargeSlider.fillAmount += rechargeRate;
+        }
 
     }
 
