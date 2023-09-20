@@ -19,8 +19,10 @@ public class RaycastGun : MonoBehaviour
 
     void Awake()
     {
-        laserLine = GetComponent<LineRenderer>();    
+        laserLine = GetComponent<LineRenderer>();
     }
+
+
 
     void Update()
     {
@@ -52,9 +54,12 @@ public class RaycastGun : MonoBehaviour
             }
         }
 
+        Vector3 target = (playerCamera.transform.forward * gunRange);
+        transform.LookAt(target);
+        
         //if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
         //{
-            //Vacuum Mode
+        //Vacuum Mode
         //}
     }
 

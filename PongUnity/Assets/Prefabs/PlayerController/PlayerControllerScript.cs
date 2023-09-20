@@ -10,6 +10,8 @@ public class PlayerControllerScript : MonoBehaviour
     public float sprintSpeed;
     public float jumpSpeed;
     public float mouseSensitivity;
+    public Vector3 gunSocket;
+    public GameObject laserClass;
 
     [Header("References")]
 
@@ -29,6 +31,15 @@ public class PlayerControllerScript : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        miningLaser = Instantiate(laserClass, this.transform);
+        miningLaser.transform.position = gunSocket;
+        if (miningLaser != null)
+        {
+            RaycastGun raycastGun = miningLaser.GetComponent<RaycastGun>();
+
+            raycastGun.playerCamera = this.gameObject.transform.GetChild(0).GetComponent<Camera>();
+        }
+        
     }
 
     void Update()
@@ -66,20 +77,6 @@ public class PlayerControllerScript : MonoBehaviour
         e.x = RestrictAngle(e.x, -85f, 85f);
         camera.eulerAngles = e;
     }
-
-    /*private void LateUpdate()
-    {
-        Vector3 e = camera.eulerAngles;
-        e.x -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        e.x = RestrictAngle(e.x, -85f, 85f);
-        camera.eulerAngles = e;
-    }
-
-
-    void FixedUpdate()
-    {
-        rb.velocity = transform.TransformDirection(newVelocity);
-    }   */
 
     void Move()
     {
