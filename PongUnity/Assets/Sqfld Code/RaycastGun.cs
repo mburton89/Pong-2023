@@ -23,8 +23,6 @@ public class RaycastGun : MonoBehaviour
 
     void Update()
     {
-        fireTimer += Time.deltaTime;
-
 
         if (gunRecharging)
         {
@@ -39,12 +37,12 @@ public class RaycastGun : MonoBehaviour
                 laserLine.enabled = true; // Moved this line here
                 FireMiningLaser();
             }
-        }
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            isFiringLaser = false; // Moved this line here
-            StopMiningLaser();
+            if (Input.GetButtonUp("Fire1"))
+            {
+                isFiringLaser = false; // Moved this line here
+                StopMiningLaser();
+            }
         }
 
         if (fireTimer >= maxLaserDuration)
@@ -52,6 +50,7 @@ public class RaycastGun : MonoBehaviour
             isFiringLaser = false;
             StopMiningLaser();
             gunRecharging = true;
+            Debug.Log("Mining gun overheated");
         }
 
         // Update the laser position continuously
@@ -100,8 +99,8 @@ public class RaycastGun : MonoBehaviour
 
     IEnumerator RechargeGun()
     {
-        Debug.Log("Mining gun overheated");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(laserRechargeTime);
         gunRecharging = false;
+        Debug.Log("Gun charged now");
     }
 }
