@@ -174,7 +174,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2354412038982832615}
   laserOrigin: {fileID: 1411274759}
   gunRange: 50
-  maxLaserDuration: 5
+  maxLaserDuration: 3
   laserRechargeTime: 2
 --- !u!120 &1125011997
 LineRenderer:
