@@ -79,14 +79,22 @@ public class RaycastGun : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Mineral"))
                 {
-                    Destroy(hit.transform.gameObject);
-                    Debug.Log("Target Hit, Mineral destroyed.");
+                    //Destroy(hit.transform.gameObject);
+                    //Debug.Log("Target Hit, Mineral destroyed.");
+                    hit.transform.gameObject.GetComponent<Minerals>().TakeDamage(0.05f);
                 }
                 else
                 {
-                    Debug.Log("target is not a mineral.");
+                   //Debug.Log("target is not a mineral.");
                 }
             }
+            else
+            {
+                laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
+                isFiringLaser = false;
+                //Debug.Log("Target ");
+            }
+            //Debug.Log("Laser shot");
         }
     }
 
