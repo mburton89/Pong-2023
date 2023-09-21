@@ -909,6 +909,7 @@ GameObject:
   - component: {fileID: 2071881352}
   - component: {fileID: 2071881351}
   - component: {fileID: 2071881350}
+  - component: {fileID: 2071881354}
   m_Layer: 0
   m_Name: target
   m_TagString: Mineral
@@ -1002,6 +1003,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2071881354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071881349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970c2ec0994483345832cc54ad139739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  worms: []
+  particlePrefab: {fileID: 5232697238295497514, guid: 01b263052b5ec324184e48644e1f2832, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

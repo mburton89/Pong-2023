@@ -32,7 +32,7 @@ public class RaycastGun : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
                 FireMiningLaser();
             }
@@ -73,21 +73,22 @@ public class RaycastGun : MonoBehaviour
                 laserLine.SetPosition(1, hit.point);
                 if (GameObject.FindWithTag("Mineral"))
                 {
-                    Destroy(hit.transform.gameObject);
-                    Debug.Log("Target Hit, Mineral destroyed.");
+                    //Destroy(hit.transform.gameObject);
+                    //Debug.Log("Target Hit, Mineral destroyed.");
+                    hit.transform.gameObject.GetComponent<Minerals>().TakeDamage(0.05f);
                 }
                 else
                 {
-                    Debug.Log("target is not a mineral.");
+                   //Debug.Log("target is not a mineral.");
                 }
             }
             else
             {
                 laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
                 isFiringLaser = false;
-                Debug.Log("Target ");
+                //Debug.Log("Target ");
             }
-            Debug.Log("Laser shot");
+            //Debug.Log("Laser shot");
         }
     }
 
