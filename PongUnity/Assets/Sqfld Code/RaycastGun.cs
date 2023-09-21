@@ -14,47 +14,57 @@ public class RaycastGun : MonoBehaviour
 
     LineRenderer laserLine;
     private float fireTimer;
-    private float rechargeTimer;
     private bool isFiringLaser;
 
     void Awake()
     {
-        laserLine = GetComponent<LineRenderer>();    
+        laserLine = GetComponent<LineRenderer>();  
     }
 
     void Update()
     {
-        fireTimer += Time.deltaTime;
+
         if (gunRecharging)
         {
-            RechargeGun();
+            StartCoroutine(RechargeGun());
             Debug.Log("Gun isn't charged");
         }
         else
         {
             if (Input.GetButton("Fire1"))
             {
+                isFiringLaser = true; // Moved this line here
+                laserLine.enabled = true; // Moved this line here
                 FireMiningLaser();
             }
-        }
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            StopMiningLaser();
-        }
-
-        if (isFiringLaser)
-        {
-            if(fireTimer >= maxLaserDuration)
+            if (Input.GetButtonUp("Fire1"))
             {
+                isFiringLaser = false; // Moved this line here
                 StopMiningLaser();
-                Debug.Log("Mining gun overheated");
             }
         }
+
+        if (fireTimer >= maxLaserDuration)
+        {
+            isFiringLaser = false;
+            StopMiningLaser();
+            gunRecharging = true;
+            Debug.Log("Mining gun overheated");
+        }
+
+        // Update the laser position continuously
+        if (isFiringLaser)
+        {
+            laserLine.SetPosition(0, laserOrigin.position);
+            Vector3 endPoint = laserOrigin.position + (playerCamera.transform.forward * gunRange);
+            laserLine.SetPosition(1, endPoint);
+        }
+
 
         //if (Input.GetButtonDown("Fire2") && fireTimer > fireRate)
         //{
-            //Vacuum Mode
+        //Vacuum Mode
         //}
     }
 
@@ -62,16 +72,12 @@ public class RaycastGun : MonoBehaviour
     {
         if (!gunRecharging)
         {
-            laserLine.enabled = true;
-            laserLine.SetPosition(0, laserOrigin.position);
-            isFiringLaser = true;
-            fireTimer = 0f;
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
-            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out hit, gunRange))
+            fireTimer += Time.deltaTime;
+            if (Physics.Raycast(laserOrigin.position, playerCamera.transform.forward, out hit, gunRange))
             {
-                laserLine.SetPosition(1, hit.point);
-                if (GameObject.FindWithTag("Mineral"))
+                if (hit.transform.CompareTag("Mineral"))
                 {
                     //Destroy(hit.transform.gameObject);
                     //Debug.Log("Target Hit, Mineral destroyed.");
@@ -95,15 +101,14 @@ public class RaycastGun : MonoBehaviour
     public void StopMiningLaser()
     {
         laserLine.enabled = false;
+        fireTimer = 0f;
         Debug.Log("Laser Off");
     }
 
-    public void RechargeGun()
+    IEnumerator RechargeGun()
     {
-        rechargeTimer += Time.deltaTime;
-        if (rechargeTimer >= laserRechargeTime)
-        {
-            gunRecharging = false; 
-        }
+        yield return new WaitForSeconds(laserRechargeTime);
+        gunRecharging = false;
+        Debug.Log("Gun charged now");
     }
 }
