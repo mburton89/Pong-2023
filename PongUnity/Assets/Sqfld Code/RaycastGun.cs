@@ -13,12 +13,14 @@ public class RaycastGun : MonoBehaviour
     private bool gunRecharging;
 
     LineRenderer laserLine;
-    private float fireTimer;
-    private bool isFiringLaser;
+    public float fireTimer;
+    public bool isFiringLaser;
 
+    public static RaycastGun Instance;
     void Awake()
     {
-        laserLine = GetComponent<LineRenderer>();  
+        laserLine = GetComponent<LineRenderer>();
+        Instance = this;
     }
 
     void Update()

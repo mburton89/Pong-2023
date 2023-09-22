@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public float usageRate;
     public float rechargeRate;
 
+    public RaycastGun laserGun;
+
     // public float maxGunCharge;
     // public float currentGunCharge;
     // public bool isGunFiring = false;
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateMineralCountUI();
-        ChargeSlider.fillAmount = 1;
+        ChargeSlider.fillAmount = RaycastGun.Instance.maxLaserDuration;
         UpdateGunChargeUI();
     }
 
@@ -70,13 +72,18 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGunChargeUI()
     {
-        if (Input.GetKey(KeyCode.Space))
+        float fillAmount = 1 - (RaycastGun.Instance.fireTimer / RaycastGun.Instance.maxLaserDuration);
+        fillAmount = Mathf.Clamp01(fillAmount);
+
+        if (RaycastGun.Instance.isFiringLaser == true)
         {
-            ChargeSlider.fillAmount -= usageRate;
+            //ChargeSlider.fillAmount -= RaycastGun.Instance.fireTimer;
+            ChargeSlider.fillAmount = fillAmount;
+
         }
         else 
         { 
-            ChargeSlider.fillAmount += rechargeRate;
+        ChargeSlider.fillAmount += RaycastGun.Instance.maxLaserDuration;
         }
 
     }
