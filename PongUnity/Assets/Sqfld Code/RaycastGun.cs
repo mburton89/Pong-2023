@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class RaycastGun : MonoBehaviour
 {
+    public static RaycastGun Instance;
+
     public Camera playerCamera;
     public Transform laserOrigin;
     public float gunRange;
@@ -14,12 +16,13 @@ public class RaycastGun : MonoBehaviour
 
     LineRenderer laserLine;
     private float fireTimer;
-    private bool isFiringLaser;
+    [HideInInspector] public bool isFiringLaser;
 
     void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
-        StopMiningLaser(); 
+        StopMiningLaser();
+        Instance = this;
     }
 
     void Update()
@@ -107,6 +110,7 @@ public class RaycastGun : MonoBehaviour
     {
         laserLine.enabled = false;
         fireTimer = 0f;
+        isFiringLaser = false;
         Debug.Log("Laser Off");
     }
 
