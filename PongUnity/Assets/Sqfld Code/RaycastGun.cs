@@ -18,7 +18,8 @@ public class RaycastGun : MonoBehaviour
 
     void Awake()
     {
-        laserLine = GetComponent<LineRenderer>();  
+        laserLine = GetComponent<LineRenderer>();
+        StopMiningLaser(); 
     }
 
     void Update()
