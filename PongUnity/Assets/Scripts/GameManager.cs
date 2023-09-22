@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public float usageRate;
     public float rechargeRate;
 
+    public float remainingRechargeTime = 0f;
+
     public RaycastGun laserGun;
 
     // public float maxGunCharge;
@@ -81,13 +83,27 @@ public class GameManager : MonoBehaviour
             ChargeSlider.fillAmount = fillAmount;
 
         }
-        else 
-        { 
-        ChargeSlider.fillAmount += RaycastGun.Instance.maxLaserDuration;
+        else
+        {
+            float timeUntilFullyCharged = RaycastGun.Instance.maxLaserDuration - RaycastGun.Instance.fireTimer;
+            float chargeAmount = 1 - (timeUntilFullyCharged / RaycastGun.Instance.laserRechargeTime);
+            chargeAmount = Mathf.Clamp01(chargeAmount);
+
+            Debug.Log(chargeAmount);
+            Debug.Log(timeUntilFullyCharged);
+
+            if (timeUntilFullyCharged > 0)
+            {
+                ChargeSlider.fillAmount += chargeAmount;
+                Debug.Log("here");
+                Debug.Log("chargeAmount it " + chargeAmount);
+                Debug.Log(timeUntilFullyCharged);
+            }
+            else
+            {
+                // Laser is fully charged, set the fill amount to 1
+                ChargeSlider.fillAmount = 1f;
+            }
         }
-
     }
-
-
-
 }

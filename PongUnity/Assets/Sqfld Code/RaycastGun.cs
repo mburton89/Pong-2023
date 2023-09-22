@@ -14,9 +14,11 @@ public class RaycastGun : MonoBehaviour
 
     LineRenderer laserLine;
     public float fireTimer;
-    public bool isFiringLaser;
 
     public static RaycastGun Instance;
+
+    [HideInInspector] public bool isFiringLaser;
+
     void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
