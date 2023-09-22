@@ -23,7 +23,6 @@ public class RaycastGun : MonoBehaviour
 
     void Update()
     {
-
         if (gunRecharging)
         {
             StartCoroutine(RechargeGun());
@@ -33,16 +32,21 @@ public class RaycastGun : MonoBehaviour
         {
             if (Input.GetButton("Fire1"))
             {
-                isFiringLaser = true; // Moved this line here
-                laserLine.enabled = true; // Moved this line here
+                isFiringLaser = true;
+                laserLine.enabled = true;
                 FireMiningLaser();
             }
 
             if (Input.GetButtonUp("Fire1"))
             {
-                isFiringLaser = false; // Moved this line here
+                isFiringLaser = false;
                 StopMiningLaser();
             }
+
+            // Calculate the laser endpoint continuously
+            Vector3 endPoint = laserOrigin.position + (playerCamera.transform.forward * gunRange);
+            laserLine.SetPosition(0, laserOrigin.position);
+            laserLine.SetPosition(1, endPoint);
         }
 
         if (fireTimer >= maxLaserDuration)
