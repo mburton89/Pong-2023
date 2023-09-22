@@ -45,14 +45,13 @@ public class PlayerControllerScript : MonoBehaviour
         newVelocity.x = Input.GetAxis("Horizontal") * speed;
         newVelocity.z = Input.GetAxis("Vertical") * speed;
 
-        print("isGrounded: " + isGrounded);
-        print("isJumping: " + isJumping);
+        
 
         if (isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
-                print("TRY JUMP");
+                
                 newVelocity.y = jumpSpeed;
                 isJumping = true;
             }

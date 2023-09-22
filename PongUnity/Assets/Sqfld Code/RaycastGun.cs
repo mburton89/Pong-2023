@@ -8,8 +8,10 @@ public class RaycastGun : MonoBehaviour
     public Camera playerCamera;
     public Transform laserOrigin;
     public float gunRange;
-    public float maxLaserDuration;
-    public float laserRechargeTime;
+    public float laserCharge;
+    public float maxLaserCharge = 50;
+    public float laserRechargeRate = 1;
+    public float laserDechargeRate = 1;
     private bool gunRecharging;
 
     LineRenderer laserLine;
@@ -24,11 +26,11 @@ public class RaycastGun : MonoBehaviour
     void Update()
     {
 
-        if (gunRecharging)
+        if (laserCharge != maxLaserCharge && isFiringLaser == false)
         {
-            StartCoroutine(RechargeGun());
-            Debug.Log("Gun isn't charged");
+            laserCharge = laserCharge + (laserRechargeRate * Time.deltaTime);
         }
+
         else
         {
             if (Input.GetButton("Fire1"))
@@ -45,12 +47,17 @@ public class RaycastGun : MonoBehaviour
             }
         }
 
-        if (fireTimer >= maxLaserDuration)
+        if (laserCharge <= 0)
         {
             isFiringLaser = false;
             StopMiningLaser();
             gunRecharging = true;
             Debug.Log("Mining gun overheated");
+        }
+
+        if (laserCharge >= maxLaserCharge)
+        {
+            gunRecharging = false;
         }
 
         // Update the laser position continuously
@@ -72,9 +79,10 @@ public class RaycastGun : MonoBehaviour
     {
         if (!gunRecharging)
         {
+            print("fdhalisdgubil");
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
-            fireTimer += Time.deltaTime;
+            laserCharge = laserCharge - (laserDechargeRate * Time.deltaTime);
             if (Physics.Raycast(laserOrigin.position, playerCamera.transform.forward, out hit, gunRange))
             {
                 if (hit.transform.CompareTag("Mineral"))
@@ -101,14 +109,15 @@ public class RaycastGun : MonoBehaviour
     public void StopMiningLaser()
     {
         laserLine.enabled = false;
-        fireTimer = 0f;
+        laserCharge = 0f;
         Debug.Log("Laser Off");
     }
 
-    IEnumerator RechargeGun()
+   /* IEnumerator RechargeGun()
     {
         yield return new WaitForSeconds(laserRechargeTime);
         gunRecharging = false;
         Debug.Log("Gun charged now");
     }
+   */
 }
