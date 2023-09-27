@@ -99,8 +99,6 @@ public class RaycastGun : MonoBehaviour
             else
             {
                 laserLine.SetPosition(1, rayOrigin + (playerCamera.transform.forward * gunRange));
-                isFiringLaser = false;
-                //Debug.Log("Target ");
             }
             //Debug.Log("Laser shot");
         }
