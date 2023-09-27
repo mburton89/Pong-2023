@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
         if (RaycastGun.Instance.isFiringLaser == true)
         {
             //ChargeSlider.fillAmount -= RaycastGun.Instance.fireTimer;
+            //ChargeSlider.fillAmount = fillAmount;
             ChargeSlider.fillAmount = fillAmount;
-
         }
         else
         {
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Laser is fully charged, set the fill amount to 1
-                ChargeSlider.fillAmount = 1f;
+                //ChargeSlider.fillAmount = 1f;
             }
         }
     }
