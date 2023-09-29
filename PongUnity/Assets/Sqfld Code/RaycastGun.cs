@@ -12,7 +12,7 @@ public class RaycastGun : MonoBehaviour
     public float gunRange;
     //public float maxLaserDuration; //TODO replace & remove
     public float laserRechargeTime;
-    private bool isOverheated;
+    [HideInInspector] public bool isOverheated;
 
     LineRenderer laserLine;
     //private float fireTimer; //TODO replace & remove

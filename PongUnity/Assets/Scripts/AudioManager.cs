@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public AudioClip soundClip; // Reference to your audio clip
+    public AudioClip powerDown;
     private AudioSource audioSource;
     private bool isPlaying = false;
 
@@ -34,6 +37,16 @@ public class AudioManager : MonoBehaviour
                 // Stop the sound if the button is released
                 audioSource.Stop();
                 isPlaying = false;
+                
+            }
+
+            if (RaycastGun.Instance.isOverheated == true)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(powerDown);
+                }
+                    
             }
         }
     }
