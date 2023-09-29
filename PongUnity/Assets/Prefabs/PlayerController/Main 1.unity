@@ -792,6 +792,7 @@ MonoBehaviour:
   gunRange: 50
   maxLaserDuration: 3
   laserRechargeTime: 2
+  isFiringLaser: 0
 --- !u!120 &1125011997
 LineRenderer:
   serializedVersion: 2
