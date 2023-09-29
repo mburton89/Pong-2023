@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
         {
             mineral2Count += ManagerTester.Instance.pointValue;
         }
+        else if (ManagerTester.Instance.mineralType == "Mineral 3")
+        {
+            mineral3Count += ManagerTester.Instance.pointValue;
+        }
 
         UpdateMineralCountUI();
     }
@@ -80,7 +84,4 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-
-
 }

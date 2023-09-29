@@ -7,6 +7,9 @@ public class Minerals : MonoBehaviour
     public float maxHealth = 10;
     public float currentHealth;
     public List<GameObject> worms;
+    public string mineralType;
+    public GameManager gameManager;
+    public int pointValue = 1;
 
     private void Awake()
     {
@@ -25,7 +28,7 @@ public class Minerals : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             TakeDamage();
-          //Debug.Log("Update called");
+            //Debug.Log("Update called");
         }
     }
 
@@ -46,7 +49,24 @@ public class Minerals : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-          //Debug.Log("Mineral destroyed!");
+            GameManager.Instance.UpdateMineralCountUI();
+         
+                if (mineralType == "Mineral 1")
+                {
+                    GameManager.Instance.mineral1Count += pointValue;
+                }
+                else if (mineralType == "Mineral 2")
+                {
+                GameManager.Instance.mineral2Count += pointValue;
+                }
+                else if (mineralType == "Mineral 3")
+                {
+                GameManager.Instance.mineral3Count += pointValue;
+                }
+
+                GameManager.Instance.UpdateMineralCountUI();
+
+            //Debug.Log("Mineral destroyed!");
             Destroy(this.gameObject);
         }
     }
