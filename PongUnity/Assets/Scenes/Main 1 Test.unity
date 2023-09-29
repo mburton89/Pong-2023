@@ -1124,6 +1124,9 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   worms: []
+  mineralType: Mineral 3
+  gameManager: {fileID: 0}
+  pointValue: 1
   particlePrefab: {fileID: 2052538771950229947, guid: 6a2706e84a5c4094a86224af392d8855, type: 3}
 --- !u!65 &1153860813
 BoxCollider:
@@ -1641,6 +1644,9 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   worms: []
+  mineralType: Mineral 1
+  gameManager: {fileID: 0}
+  pointValue: 1
   particlePrefab: {fileID: 2052538771950229947, guid: a4a3b4c6e5ebe9f4bb7f958b33e2d3b4, type: 3}
 --- !u!65 &1583911682
 BoxCollider:
@@ -2048,6 +2054,9 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   worms: []
+  mineralType: Mineral 2
+  gameManager: {fileID: 0}
+  pointValue: 1
   particlePrefab: {fileID: 2052538771950229947, guid: c9ed4fc2eebc52f4aa8d4e4d4ea4c22b, type: 3}
 --- !u!65 &1889901433
 BoxCollider:
