@@ -165,7 +165,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2f52c5f7e5cd067488ec2b379a154caf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b5ecb4113447c7b4a90c163bf646b4db, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1025,7 +1025,7 @@ GameObject:
   - component: {fileID: 1125011998}
   - component: {fileID: 1125011997}
   - component: {fileID: 1125011996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lasergun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,8 +1041,8 @@ Transform:
   m_GameObject: {fileID: 1125011994}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.87844, y: -0.79785, z: 1.2605}
-  m_LocalScale: {x: 0.5995476, y: 1.1590455, z: 0.5995476}
+  m_LocalPosition: {x: 0.56, y: -0.54, z: 0.45}
+  m_LocalScale: {x: 0.4, y: 1.1590455, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1411274759}
@@ -1123,7 +1123,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.49253845
+        value: 0.1900711
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2566,10 +2566,10 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
