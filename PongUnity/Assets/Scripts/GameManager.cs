@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI mineral2Counter;
     public TextMeshProUGUI mineral3Counter;
 
+    public Image chargeSliderBG;
     public Image ChargeSlider;
     public float usageRate;
     public float rechargeRate;
@@ -56,6 +58,10 @@ public class GameManager : MonoBehaviour
         {
             mineral2Count += ManagerTester.Instance.pointValue;
         }
+        else if (ManagerTester.Instance.mineralType == "Mineral 3")
+        {
+            mineral3Count += ManagerTester.Instance.pointValue;
+        }
 
         UpdateMineralCountUI();
     }
@@ -81,6 +87,44 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void HandleOverheat()
+    {
 
+        StartCoroutine(FlashRed());
+    }
 
+    private IEnumerator FlashRed()
+    {
+        chargeSliderBG.color = new Color(.5f, 0, 0);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.red, 0.25f).SetEase(Ease.InOutQuad);
+        yield return new WaitForSeconds(0.25f);
+        ChargeSlider.DOColor(Color.white, 0.25f).SetEase(Ease.InOutQuad);
+
+        chargeSliderBG.color = Color.grey;
+    }
+
+    public void HandleOverheatComplete()
+    {
+        ChargeSlider.color = Color.white;
+    }
 }

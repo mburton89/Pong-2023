@@ -24,18 +24,18 @@ public class ManagerTester : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            BreakMineral();
-        }
-    }
+  //.  void Update()
+    //{
+      //  if (Input.GetMouseButtonDown(0))
+        //{
+           // BreakMineral();
+        //}
+    //}
 
-    public void BreakMineral()
-    {
-        Debug.Log("Broke Mineral 2");
-      gameManager.TestMineralMined();
-    }
+    //public void BreakMineral()
+  //  {
+     //   Debug.Log("Broke Mineral 2");
+     // gameManager.TestMineralMined();
+   // }//
 
 }

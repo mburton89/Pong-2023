@@ -4,16 +4,50 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
+    public AudioClip soundClip; // Reference to your audio clip
+    public AudioClip powerDown;
+    private AudioSource audioSource;
+    private bool isPlaying = false;
+
+    private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundClip;
+        audioSource.loop = true; // Set to loop the audio
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        // Check if the button is held down
+        if (Input.GetButton("Fire1") && RaycastGun.Instance.isFiringLaser == true)
+        {
+            if (!isPlaying)
+            {
+                // Play the sound if it's not already playing
+                audioSource.Play();
+                isPlaying = true;
+            }
+        }
+        else if (Input.GetButtonUp("Fire1") || RaycastGun.Instance.isFiringLaser == false)
+        {
+            if (isPlaying)
+            {
+                // Stop the sound if the button is released
+                audioSource.Stop();
+                isPlaying = false;
+                
+            }
+
+            if (RaycastGun.Instance.isOverheated == true)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(powerDown);
+                }
+                    
+            }
+        }
     }
 }
