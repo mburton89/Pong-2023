@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class MineralSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float gridSize = 10;
+    public float mineralYPosition = 1;
+
+    //FOR LOOPS
+    public GameObject mineralPrefab;
+    public int numItemsToSpawn = 20;
+
+    //FOREACH
+    public List<GameObject> mineralPrefabs;
+
+    private void Start()
     {
-        
+        SpawnItems();
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnItems()
     {
-        
+        for (int i = 0; i < numItemsToSpawn; i++)
+        {
+            Vector3 randomPosition = new Vector3(Random.Range(-gridSize, gridSize), mineralYPosition, Random.Range(-gridSize, gridSize));
+            Instantiate(mineralPrefab, randomPosition, Quaternion.identity);
+        }
     }
 }

@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
         else
         {
             Debug.Log("Timer has reached zero");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneTransition.Instance.TransitionToScene(1);
         }
     }
 }
