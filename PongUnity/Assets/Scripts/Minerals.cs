@@ -11,6 +11,9 @@ public class Minerals : MonoBehaviour
     public GameManager gameManager;
     public int pointValue = 1;
 
+    public GameObject chunkPrefab;
+    public int chunksToSpawn;
+
     private void Awake()
     {
         maxHealth = 10;
@@ -44,7 +47,6 @@ public class Minerals : MonoBehaviour
         //Debug.Log("Current Health: " + currentHealth);
     }
 
-
     private void CheckHealth()
     {
         if (currentHealth <= 0)
@@ -65,6 +67,19 @@ public class Minerals : MonoBehaviour
                 }
 
                 GameManager.Instance.UpdateMineralCountUI();
+
+            for (int i = 0; i < chunksToSpawn; i++)
+            {
+                GameObject chunk = Instantiate(chunkPrefab, transform.position, Quaternion.identity, null);
+
+                float chunkForce = 30;
+
+                float randX = Random.Range(-chunkForce, chunkForce);
+                float randZ = Random.Range(-chunkForce, chunkForce);
+                Vector3 newForce = new Vector3 (randX, chunkForce, randZ);
+
+                chunk.GetComponent<Rigidbody>().AddForce(newForce);
+            }
 
             //Debug.Log("Mineral destroyed!");
             Destroy(this.gameObject);
