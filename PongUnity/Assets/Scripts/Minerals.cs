@@ -9,7 +9,7 @@ public class Minerals : MonoBehaviour
     public string mineralType;
     public GameManager gameManager;
     public int pointValue = 1;
-
+    public GameObject particlePrefab;
     public GameObject chunkPrefab;
     public GameObject wormPrefab;
     public int chunksToSpawn;
@@ -100,17 +100,8 @@ public class Minerals : MonoBehaviour
             }
 
             //Debug.Log("Mineral destroyed!");
+            Instantiate(particlePrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
-
-    public GameObject particlePrefab;
-    void OnDestroy()
-    {
-        if (particlePrefab != null)
-        {
-            Instantiate(particlePrefab, transform.position, Quaternion.identity);
-        }
-    }
-
 }
