@@ -6,13 +6,14 @@ public class Minerals : MonoBehaviour
 {
     public float maxHealth = 10;
     public float currentHealth;
-    public List<GameObject> worms;
     public string mineralType;
     public GameManager gameManager;
     public int pointValue = 1;
 
     public GameObject chunkPrefab;
+    public GameObject wormPrefab;
     public int chunksToSpawn;
+    public int wormsToSpawn;
 
     private void Awake()
     {
@@ -79,6 +80,19 @@ public class Minerals : MonoBehaviour
                 Vector3 newForce = new Vector3 (randX, chunkForce, randZ);
 
                 chunk.GetComponent<Rigidbody>().AddForce(newForce);
+            }
+
+            for (int i = 0; i < wormsToSpawn; i++)
+            {
+                GameObject worm = Instantiate(chunkPrefab, transform.position, Quaternion.identity, null);
+
+                float chunkForce = 30;
+
+                float randX = Random.Range(-chunkForce, chunkForce);
+                float randZ = Random.Range(-chunkForce, chunkForce);
+                Vector3 newForce = new Vector3(randX, chunkForce, randZ);
+
+                worm.GetComponent<Rigidbody>().AddForce(newForce);
             }
 
             //Debug.Log("Mineral destroyed!");
