@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     public int mineral1Count;
     public int mineral2Count;
     public int mineral3Count;
+    public int mineral4Count;
 
     public TextMeshProUGUI mineral1Counter;
     public TextMeshProUGUI mineral2Counter;
     public TextMeshProUGUI mineral3Counter;
+    public TextMeshProUGUI mineral4Counter;
 
     public Image chargeSliderBG;
     public Image ChargeSlider;
@@ -62,6 +64,10 @@ public class GameManager : MonoBehaviour
         {
             mineral3Count += ManagerTester.Instance.pointValue;
         }
+        else if (ManagerTester.Instance.mineralType == "Mineral 4")
+        {
+            mineral4Count += ManagerTester.Instance.pointValue;
+        }
 
         UpdateMineralCountUI();
     }
@@ -72,6 +78,7 @@ public class GameManager : MonoBehaviour
         mineral1Counter.text = "M1: " + mineral1Count.ToString();
         mineral2Counter.text = "M2: " + mineral2Count.ToString();
         mineral3Counter.text = "M3: " + mineral3Count.ToString();
+        mineral4Counter.text = "M4: " + mineral4Count.ToString();
     }
 
     public void UpdateGunChargeUI()

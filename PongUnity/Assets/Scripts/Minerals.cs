@@ -66,8 +66,12 @@ public class Minerals : MonoBehaviour
                 {
                 GameManager.Instance.mineral3Count += pointValue;
                 }
+                else if (mineralType == "Mineral 4")
+                {
+                GameManager.Instance.mineral4Count += pointValue;
+                }
 
-                GameManager.Instance.UpdateMineralCountUI();
+            GameManager.Instance.UpdateMineralCountUI();
 
             for (int i = 0; i < chunksToSpawn; i++)
             {
