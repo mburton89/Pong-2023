@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
     public int mineral4Count;
 
     public TextMeshProUGUI mineral1Counter;
-    public TextMeshProUGUI mineral2Counter;
+/*    public TextMeshProUGUI mineral2Counter;
     public TextMeshProUGUI mineral3Counter;
-    public TextMeshProUGUI mineral4Counter;
+    public TextMeshProUGUI mineral4Counter;*/
 
     public Image chargeSliderBG;
     public Image ChargeSlider;
@@ -54,19 +54,19 @@ public class GameManager : MonoBehaviour
     {
        if (ManagerTester.Instance.mineralType == "Mineral 1")
         {
-            mineral1Count += ManagerTester.Instance.pointValue;
+            mineral1Count += 100;
         }
        else if (ManagerTester.Instance.mineralType == "Mineral 2")
         {
-            mineral2Count += ManagerTester.Instance.pointValue;
+            mineral1Count += 200;
         }
         else if (ManagerTester.Instance.mineralType == "Mineral 3")
         {
-            mineral3Count += ManagerTester.Instance.pointValue;
+            mineral1Count += 300;
         }
         else if (ManagerTester.Instance.mineralType == "Mineral 4")
         {
-            mineral4Count += ManagerTester.Instance.pointValue;
+            mineral1Count += 100;
         }
 
         UpdateMineralCountUI();
@@ -75,10 +75,10 @@ public class GameManager : MonoBehaviour
     // Updates the text in UI to the mineral count.
     public void UpdateMineralCountUI()
     {
-        mineral1Counter.text = "M1: " + mineral1Count.ToString();
-        mineral2Counter.text = "M2: " + mineral2Count.ToString();
-        mineral3Counter.text = "M3: " + mineral3Count.ToString();
-        mineral4Counter.text = "M4: " + mineral4Count.ToString();
+        mineral1Counter.text = mineral1Count.ToString();
+        //mineral2Counter.text = mineral2Count.ToString();
+        //mineral3Counter.text = mineral3Count.ToString();
+        //mineral4Counter.text = mineral4Count.ToString();
     }
 
     public void UpdateGunChargeUI()

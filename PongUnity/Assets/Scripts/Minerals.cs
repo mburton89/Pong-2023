@@ -60,15 +60,15 @@ public class Minerals : MonoBehaviour
                 }
                 else if (mineralType == "Mineral 2")
                 {
-                GameManager.Instance.mineral2Count += pointValue;
+                GameManager.Instance.mineral1Count += pointValue;
                 }
                 else if (mineralType == "Mineral 3")
                 {
-                GameManager.Instance.mineral3Count += pointValue;
+                GameManager.Instance.mineral1Count += pointValue;
                 }
                 else if (mineralType == "Mineral 4")
                 {
-                GameManager.Instance.mineral4Count += pointValue;
+                GameManager.Instance.mineral1Count += pointValue;
                 }
 
             GameManager.Instance.UpdateMineralCountUI();

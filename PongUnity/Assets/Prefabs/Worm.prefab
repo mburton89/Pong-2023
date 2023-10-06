@@ -221,16 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970c2ec0994483345832cc54ad139739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 1
   currentHealth: 0
   mineralType: Mineral 4
   gameManager: {fileID: 0}
-  pointValue: 1
+  pointValue: 100
+  particlePrefab: {fileID: 2052538771950229947, guid: ef9c43eed11bf5845ad3198e18ffb870, type: 3}
   chunkPrefab: {fileID: 0}
   wormPrefab: {fileID: 0}
   chunksToSpawn: 0
   wormsToSpawn: 0
-  particlePrefab: {fileID: 2052538771950229947, guid: ef9c43eed11bf5845ad3198e18ffb870, type: 3}
 --- !u!1 &1759616024937174229
 GameObject:
   m_ObjectHideFlags: 0

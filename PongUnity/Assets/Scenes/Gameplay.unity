@@ -2302,7 +2302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &827778036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2438,7 +2438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &835257468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5138,9 +5138,8 @@ MonoBehaviour:
   mineral1Count: 0
   mineral2Count: 0
   mineral3Count: 0
+  mineral4Count: 0
   mineral1Counter: {fileID: 1418330341}
-  mineral2Counter: {fileID: 827778038}
-  mineral3Counter: {fileID: 835257470}
   chargeSliderBG: {fileID: 2049179154}
   ChargeSlider: {fileID: 901381644}
   usageRate: 0.005
@@ -6675,7 +6674,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3856523571095769403
 MonoBehaviour:
