@@ -21,6 +21,8 @@ public class Timer : MonoBehaviour
     public float timeLimit = 30f;
     private float currentTime;
 
+    bool hasEndedTimer = false;
+
     void Start()
     {
         currentTime = timeLimit;
@@ -28,6 +30,8 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (hasEndedTimer) return;
+
         if (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
@@ -35,11 +39,10 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            hasEndedTimer = true;
             Debug.Log("Timer has reached zero");
             statsMenu.HandleTimerEnd();
-
         }
-
     }
 }
 

@@ -44,6 +44,10 @@ public class StatsMenu : MonoBehaviour
     void Update()
     {
         //UpdateMineralScore();
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     private void UpdateMineralScore()
@@ -66,9 +70,14 @@ public class StatsMenu : MonoBehaviour
         if (intMineralTotalCount > PlayerPrefs.GetInt("bestscore"))
         {
             PlayerPrefs.SetInt("bestscore", intMineralTotalCount);
+            bestScore.text = "New Best Score: " + PlayerPrefs.GetInt("bestscore").ToString();
+            bestScore.color = Color.red;
+        }
+        else
+        { 
+            bestScore.text = "Best Score: " + PlayerPrefs.GetInt("bestscore").ToString();
         }
 
-        bestScore.text = "Best Score: " + PlayerPrefs.GetInt("bestscore").ToString();
     }
 
     void RetryButtonPressed()
