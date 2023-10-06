@@ -84,7 +84,7 @@ public class Minerals : MonoBehaviour
 
             for (int i = 0; i < wormsToSpawn; i++)
             {
-                GameObject worm = Instantiate(chunkPrefab, transform.position, Quaternion.identity, null);
+                GameObject worm = Instantiate(wormPrefab, transform.position, Quaternion.identity, null);
 
                 float chunkForce = 30;
 

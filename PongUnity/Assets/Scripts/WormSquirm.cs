@@ -39,6 +39,6 @@ public class WormSquirm : MonoBehaviour
     private void Move()
     {
         // Move the object forward
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
     }
 }
