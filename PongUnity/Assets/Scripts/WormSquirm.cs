@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class WormSquirm : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float moveSpeed = 5.0f; // Speed of movement
+    public float changeDirectionInterval = 3.0f; // Time interval to change direction
+    private float nextDirectionChangeTime;
+
+    private void Start()
     {
-        var rb = GetComponent<Rigidbody>();
+        nextDirectionChangeTime = Time.time + Random.Range(0, changeDirectionInterval);
     }
 
-
-    private Vector3 RandomVector(float min, float max)
+    private void Update()
     {
-        var x = Random.Range(min, max);
-        var y = Random.Range(min, max);
-        var z = Random.Range(min, max);
-        return new Vector3(x, y, z);
+        if (Time.time >= nextDirectionChangeTime)
+        {
+            ChangeDirection();
+        }
+
+        Move();
+    }
+
+    private void ChangeDirection()
+    {
+        // Generate a random direction vector
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+        randomDirection.Normalize();
+
+        // Set the object's rotation to face the new direction
+        transform.rotation = Quaternion.LookRotation(randomDirection);
+
+        // Set the next direction change time
+        nextDirectionChangeTime = Time.time + changeDirectionInterval;
+    }
+
+    private void Move()
+    {
+        // Move the object forward
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 }
