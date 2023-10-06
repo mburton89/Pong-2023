@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4755444762615517670}
   - component: {fileID: 6222498633908449398}
   - component: {fileID: 2730142020154221384}
+  - component: {fileID: -5721758001541885086}
   m_Layer: 0
   m_Name: Mineral 2
   m_TagString: Mineral
@@ -124,4 +125,33 @@ MonoBehaviour:
   mineralType: Mineral 2
   gameManager: {fileID: 0}
   pointValue: 1
+  chunkPrefab: {fileID: 1916062103982107505, guid: 6345b4272d1c7eb4fbdaa4e36c08e419, type: 3}
+  chunksToSpawn: 3
   particlePrefab: {fileID: 2052538771950229947, guid: c9ed4fc2eebc52f4aa8d4e4d4ea4c22b, type: 3}
+--- !u!54 &-5721758001541885086
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733679675774835383}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
