@@ -16,6 +16,8 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
 
+    public StatsMenu statsMenu;
+
     public float timeLimit = 30f;
     private float currentTime;
 
@@ -34,8 +36,10 @@ public class Timer : MonoBehaviour
         else
         {
             Debug.Log("Timer has reached zero");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            statsMenu.HandleTimerEnd();
+
         }
+
     }
 }
 

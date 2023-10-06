@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
+    
     [Header("Configuration")]
 
     public float jogSpeed;
@@ -44,9 +45,6 @@ public class PlayerControllerScript : MonoBehaviour
         float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : jogSpeed;
         newVelocity.x = Input.GetAxis("Horizontal") * speed;
         newVelocity.z = Input.GetAxis("Vertical") * speed;
-
-        print("isGrounded: " + isGrounded);
-        print("isJumping: " + isJumping);
 
         if (isGrounded)
         {

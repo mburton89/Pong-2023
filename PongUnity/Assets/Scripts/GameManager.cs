@@ -127,4 +127,7 @@ public class GameManager : MonoBehaviour
     {
         ChargeSlider.color = Color.white;
     }
+
+
+
 }
