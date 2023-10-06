@@ -6,13 +6,14 @@ public class Minerals : MonoBehaviour
 {
     public float maxHealth = 10;
     public float currentHealth;
-    public List<GameObject> worms;
     public string mineralType;
     public GameManager gameManager;
     public int pointValue = 1;
-
+    public GameObject particlePrefab;
     public GameObject chunkPrefab;
+    public GameObject wormPrefab;
     public int chunksToSpawn;
+    public int wormsToSpawn;
 
     private void Awake()
     {
@@ -65,8 +66,12 @@ public class Minerals : MonoBehaviour
                 {
                 GameManager.Instance.mineral3Count += pointValue;
                 }
+                else if (mineralType == "Mineral 4")
+                {
+                GameManager.Instance.mineral4Count += pointValue;
+                }
 
-                GameManager.Instance.UpdateMineralCountUI();
+            GameManager.Instance.UpdateMineralCountUI();
 
             for (int i = 0; i < chunksToSpawn; i++)
             {
@@ -81,18 +86,22 @@ public class Minerals : MonoBehaviour
                 chunk.GetComponent<Rigidbody>().AddForce(newForce);
             }
 
+            for (int i = 0; i < wormsToSpawn; i++)
+            {
+                GameObject worm = Instantiate(wormPrefab, transform.position, Quaternion.identity, null);
+
+                float chunkForce = 30;
+
+                float randX = Random.Range(-chunkForce, chunkForce);
+                float randZ = Random.Range(-chunkForce, chunkForce);
+                Vector3 newForce = new Vector3(randX, chunkForce, randZ);
+
+                worm.GetComponent<Rigidbody>().AddForce(newForce);
+            }
+
             //Debug.Log("Mineral destroyed!");
+            Instantiate(particlePrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
-
-    public GameObject particlePrefab;
-    void OnDestroy()
-    {
-        if (particlePrefab != null)
-        {
-            Instantiate(particlePrefab, transform.position, Quaternion.identity);
-        }
-    }
-
 }
