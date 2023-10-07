@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970c2ec0994483345832cc54ad139739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 4
   currentHealth: 0
   mineralType: Mineral 2
   gameManager: {fileID: 0}
@@ -127,8 +127,9 @@ MonoBehaviour:
   particlePrefab: {fileID: 2052538771950229947, guid: c9ed4fc2eebc52f4aa8d4e4d4ea4c22b, type: 3}
   chunkPrefab: {fileID: 1916062103982107505, guid: 6345b4272d1c7eb4fbdaa4e36c08e419, type: 3}
   wormPrefab: {fileID: 866066046931751759, guid: e18059ceea2f8fc43889e34c0952251d, type: 3}
-  chunksToSpawn: 3
+  chunksToSpawn: 4
   wormsToSpawn: 2
+  isWorm: 0
 --- !u!54 &-5721758001541885086
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int mineral3Count;
     public int mineral4Count;
 
-    public TextMeshProUGUI mineral1Counter;
+    public TextMeshProUGUI pointText;
 /*    public TextMeshProUGUI mineral2Counter;
     public TextMeshProUGUI mineral3Counter;
     public TextMeshProUGUI mineral4Counter;*/
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         UpdateMineralCountUI();
         ChargeSlider.fillAmount = 1;
         UpdateGunChargeUI();
@@ -75,10 +76,13 @@ public class GameManager : MonoBehaviour
     // Updates the text in UI to the mineral count.
     public void UpdateMineralCountUI()
     {
-        mineral1Counter.text = mineral1Count.ToString();
-        //mineral2Counter.text = mineral2Count.ToString();
-        //mineral3Counter.text = mineral3Count.ToString();
-        //mineral4Counter.text = mineral4Count.ToString();
+        int totalMineral1Points = mineral1Count * 100;
+        int totalMineral2Points = mineral2Count * 200;
+        int totalMineral3Points = mineral3Count * 300;
+        int totalMineral4Points = mineral4Count * 100;
+        int totalPoints = totalMineral1Points + totalMineral2Points + totalMineral3Points + totalMineral4Points;
+
+        pointText.text = totalPoints.ToString();
     }
 
     public void UpdateGunChargeUI()

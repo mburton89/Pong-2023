@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
 
     void HandleStartPressed()
     {
+        SoundManager.Instance.PlayButtonSelectSound();
+
         Debug.Log("next scene here I go.");
         SceneTransition.Instance.TransitionToScene(1);
     }

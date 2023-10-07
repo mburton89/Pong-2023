@@ -16,7 +16,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     public GameObject miningLaser;
     public Rigidbody rb;
-    public Transform camera;
+    public Transform myCamera;
 
     [Header("Runtime")]
 
@@ -59,10 +59,10 @@ public class PlayerControllerScript : MonoBehaviour
 
         rb.velocity = transform.TransformDirection(newVelocity);
         
-        Vector3 e = camera.eulerAngles;
+        Vector3 e = myCamera.eulerAngles;
         e.x -= Input.GetAxis("Mouse Y") * mouseSensitivity;
         e.x = RestrictAngle(e.x, -85f, 85f);
-        camera.eulerAngles = e;
+        myCamera.eulerAngles = e;
     }
 
     /*private void LateUpdate()

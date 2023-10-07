@@ -23,6 +23,8 @@ public class RaycastGun : MonoBehaviour
     public float laserConsumptionRate;
     public float laserRechargeRate;
 
+    public GameObject laserHitParticlesPrefab;
+
     void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
@@ -105,6 +107,8 @@ public class RaycastGun : MonoBehaviour
                     //Destroy(hit.transform.gameObject);
                     //Debug.Log("Target Hit, Mineral destroyed.");
                     hit.transform.gameObject.GetComponent<Minerals>().TakeDamage(0.05f);
+                    Instantiate(laserHitParticlesPrefab, hit.transform.position, Quaternion.identity, null);
+                    //SoundManager.Instance.PlayLaserHitSound();
                 }
                 else
                 {

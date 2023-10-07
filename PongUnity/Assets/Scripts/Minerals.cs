@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Minerals : MonoBehaviour
 {
-    public float maxHealth = 10;
+    public float maxHealth;
     public float currentHealth;
     public string mineralType;
     public GameManager gameManager;
@@ -15,10 +15,9 @@ public class Minerals : MonoBehaviour
     public int chunksToSpawn;
     public int wormsToSpawn;
 
-    private void Awake()
-    {
-        maxHealth = 10;
-    }
+    public bool isWorm;
+
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -28,12 +27,6 @@ public class Minerals : MonoBehaviour
     void Update()
     {
         CheckHealth();
-
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            TakeDamage();
-            //Debug.Log("Update called");
-        }
     }
 
     public void TakeDamage()
@@ -52,24 +45,22 @@ public class Minerals : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            GameManager.Instance.UpdateMineralCountUI();
-         
                 if (mineralType == "Mineral 1")
                 {
-                    GameManager.Instance.mineral1Count += pointValue;
+                    GameManager.Instance.mineral1Count ++;
                 }
                 else if (mineralType == "Mineral 2")
                 {
-                GameManager.Instance.mineral1Count += pointValue;
-                }
+                GameManager.Instance.mineral2Count ++;
+            }
                 else if (mineralType == "Mineral 3")
                 {
-                GameManager.Instance.mineral1Count += pointValue;
-                }
+                GameManager.Instance.mineral3Count ++;
+            }
                 else if (mineralType == "Mineral 4")
                 {
-                GameManager.Instance.mineral1Count += pointValue;
-                }
+                GameManager.Instance.mineral4Count ++;
+            }
 
             GameManager.Instance.UpdateMineralCountUI();
 
@@ -99,8 +90,11 @@ public class Minerals : MonoBehaviour
                 worm.GetComponent<Rigidbody>().AddForce(newForce);
             }
 
-            //Debug.Log("Mineral destroyed!");
             Instantiate(particlePrefab, transform.position, Quaternion.identity);
+            //if (isWorm)
+            //{ 
+            //    SoundManager.Instance.PlayWormSound();
+            //}
             Destroy(this.gameObject);
         }
     }

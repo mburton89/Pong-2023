@@ -1,15 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager.UI;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static Unity.Collections.AllocatorManager;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Timer : MonoBehaviour
@@ -36,9 +25,15 @@ public class Timer : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             timerText.text = currentTime.ToString("F1");
+
+            if (currentTime < 10)
+            { 
+                timerText.color = Color.red;
+            }
         }
         else
         {
+            timerText.color = Color.white;
             hasEndedTimer = true;
             Debug.Log("Timer has reached zero");
             statsMenu.HandleTimerEnd();

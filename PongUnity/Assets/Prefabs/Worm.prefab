@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970c2ec0994483345832cc54ad139739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0.4
+  maxHealth: 1
   currentHealth: 0
   mineralType: Mineral 4
   gameManager: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
   wormPrefab: {fileID: 0}
   chunksToSpawn: 0
   wormsToSpawn: 0
+  isWorm: 1
 --- !u!1 &1759616024937174229
 GameObject:
   m_ObjectHideFlags: 0
