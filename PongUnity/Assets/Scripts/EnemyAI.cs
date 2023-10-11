@@ -46,7 +46,7 @@ public class EnemyAIMouse : MonoBehaviour
 
         if (distance <= proximityFromMouse)
         {
-            if (distance <= stopDistance)
+            if (distance >= stopDistance)
             {
                 stopRunningAway();
                 Debug.Log("stop");
