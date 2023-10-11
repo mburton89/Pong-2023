@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class EnemyAIMouse : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class EnemyAIMouse : MonoBehaviour
 
         if (distance <= proximityFromMouse)
         {
-            if (distance >= stopDistance)
+            if (distance > stopDistance)
             {
                 stopRunningAway();
                 Debug.Log("stop");
@@ -91,5 +92,18 @@ public class EnemyAIMouse : MonoBehaviour
     {
         // Make the enemy face opposite to the mouse direction
         transform.up = -direction;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, stopDistance);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, despawnDistance);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, proximityFromMouse);
+
     }
 }
